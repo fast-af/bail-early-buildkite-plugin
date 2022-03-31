@@ -1,6 +1,6 @@
 # bail-early-buildkite-plugin
 
-> If any jobs or triggered builds fail, cancel the parent build immediately
+> Immediately cancel a build when any of its job fails
 
 ![Screenshot of bailed build](./.github/screenshot.png)
 
@@ -14,12 +14,10 @@
 steps:
   - command: 'echo hi'
     plugins:
-      - 'uber-workflow/bail-early#v1.1.0': ~
+      - 'fast-af/bail-early#v1.2.0': ~
 ```
 
-Any step using this plugin will cause the parent build to bail with an annotation linking to the failed job.
-
-If this plugin is used in a build triggered by a [trigger step](https://buildkite.com/docs/pipelines/trigger-step), it will bail the parent build it was triggered from and add the annotation there instead.
+Any step using this plugin will cause the build to bail with an annotation linking to the failed job.
 
 ## Configuration
 
@@ -29,6 +27,6 @@ If you need to limit when the plugin is enabled, you can use the `if` parameter.
 steps:
   - command: 'echo hi'
     plugins:
-      - 'uber-workflow/bail-early#v1.1.0':
+      - 'fast-af/bail-early#v1.2.0':
         if: '"$SHOULD_BAIL_EARLY" = "true"'
 ```
