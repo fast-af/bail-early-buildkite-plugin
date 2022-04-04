@@ -10,6 +10,11 @@ if [ "$BUILDKITE_COMMAND_EXIT_STATUS" = "-1" ]; then
   exit 0
 fi
 
+if [ "$BUILDKITE_COMMAND_EXIT_STATUS" = "143" ]; then
+  echo "skipping SIGTERM exit code 143; exiting"
+  exit 0
+fi
+
 if [ -z "$BUILDKITE_TOKEN" ]; then
   echo "BUILDKITE_TOKEN not provided; exiting"
   exit 0
